@@ -1,0 +1,111 @@
+.counterSettings {
+    display: flex;
+    width: 300px;
+    height: 195px;
+    border: var(--border-style);
+    background-color: var(--background-color-cyan);
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: var(--border-radius);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 100px;
+    width: 275px;
+    border: var(--border-style);
+    border-radius: var(--border-radius);
+}
+
+.options .item {
+    display: flex;
+    width: inherit;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.input {
+    --background-color-cyan: cyan;
+    text-align: center;
+    color: #38384f;
+    font-weight: bold;
+    background-color: var(--background-color-cyan);
+    border: 2px solid #38384f;
+    border-radius: var(--border-radius);
+}
+
+.input:hover {
+    border-color: cyan;
+    background-color: var(--background-color);
+    color: cyan;
+}
+
+.input:focus {
+    outline: none;
+    border: var(--border-style);
+    background-color: var(--background-color);
+    color: cyan;
+}
+
+.item label {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: 12px;
+    color: cyan;
+}
+
+.buttonBlockWrapper {
+    display: grid;
+    place-items: center;
+    margin-top: 20px;
+    width: 275px;
+    height: 50px;
+    border: var(--border-style);
+    border-radius: var(--border-radius);
+}
+
+.settingButtonStyle {
+    --button-border-style: 2px solid #38384f;
+    height: 35px;
+    width: 100px;
+    background-color: var(--background-color-cyan);
+    border: var(--button-border-style);
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    color: #38384f;
+}
+
+.settingButtonStyle:hover {
+    background-color: var(--background-color);
+    border-color: cyan;
+    color: cyan;
+}
+
+.settingButtonStyle:disabled {
+    background-color: gray;
+    border-color: gray;
+    color: white;
+    opacity: 0.4;
+}
+
+.error {
+    border: 2px solid #ff0000;
+    background-color: rgb(248, 151, 151);
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error:focus {
+    border: 2px solid #ff0000;
+    background-color: rgb(248, 151, 151);
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    outline: none;
+}

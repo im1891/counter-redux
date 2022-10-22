@@ -1,0 +1,22 @@
+.btn {
+    height: 35px;
+    width: 100px;
+    background-color: cyan;
+    border: 2px solid #38384f;
+    color: #38384f;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: var(--background-color);
+    border-color: cyan;
+    color: cyan;
+}
+
+.btn:disabled {
+    background-color: gray;
+    border-color: gray;
+    color: white;
+    opacity: 0.4;
+}
