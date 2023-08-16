@@ -1,58 +1,33 @@
-import React from "react";
-import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import { AppStateType } from "./store";
-import { CounterStateType } from "./counter-reducer";
-import { Settings } from "./component/settings/Settings";
-import { Counter } from "./component/counter/Counter";
+import React from 'react'
+import './App.css'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from './store'
+import { Settings } from './component/settings/Settings'
+import { Counter } from './component/counter/Counter'
 
 export function App() {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
-  const counterData = useSelector<AppStateType, CounterStateType>(
-    (state) => state.counterData
-  );
+	const counter = useAppSelector((state) => state.counter)
 
-  /*
-            useEffect(() => {
-              const data = localStorage.getItem("data");
-  
-              if (data) {
-                setMinCounterValue(JSON.parse(data).minValue);
-                setMaxCounterValue(JSON.parse(data).maxValue);
-                setCounterValue(JSON.parse(data).count);
-              }
-            }, []);
-          */
+	return (
+		<div className="appWrapper">
+			<Settings
+				dispatch={dispatch}
+				error={counter.error}
+				counterValue={counter.counterValue}
+				maxCounterValue={counter.maxCounterValue}
+				minCounterValue={counter.minCounterValue}
+			/>
 
-  /*  useEffect(() => {
-              const data = {
-                minValue: minCounterValue,
-                maxValue: maxCounterValue,
-                count: counterValue,
-              };
-  
-              localStorage.setItem("data", JSON.stringify(data));
-            }, [minCounterValue, maxCounterValue, counterValue]);*/
-
-  return (
-    <div className="appWrapper">
-      <Settings
-        dispatch={dispatch}
-        error={counterData.error}
-        counterValue={counterData.counterValue}
-        maxCounterValue={counterData.maxCounterValue}
-        minCounterValue={counterData.minCounterValue}
-      />
-
-      <Counter
-        dispatch={dispatch}
-        error={counterData.error}
-        counterValue={counterData.counterValue}
-        minCounterValue={counterData.minCounterValue}
-        maxCounterValue={counterData.maxCounterValue}
-        displayMessage={counterData.displayMessage}
-      />
-    </div>
-  );
+			<Counter
+				dispatch={dispatch}
+				error={counter.error}
+				counterValue={counter.counterValue}
+				minCounterValue={counter.minCounterValue}
+				maxCounterValue={counter.maxCounterValue}
+				displayMessage={counter.displayMessage}
+			/>
+		</div>
+	)
 }

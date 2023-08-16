@@ -1,19 +1,24 @@
-import {
-  combineReducers,
-  legacy_createStore as createStore,
-  Store,
-} from "redux";
-import { counterReducer, CounterReducerActionsTypes } from "./counter-reducer";
+import { combineReducers, legacy_createStore as createStore } from 'redux'
+import { counterReducer } from './counter-reducer'
+import { loadState, saveState } from './localStorage'
+import _ from 'lodash'
+import { TypedUseSelectorHook, useSelector } from 'react-redux'
+import { composeWithDevTools } from '@redux-devtools/extension'
 
-type ActionsTypes = CounterReducerActionsTypes;
-export type AppStateType = ReturnType<typeof rootReducer>;
-type StoreType = Store<AppStateType, ActionsTypes>;
+export type AppStateType = ReturnType<typeof rootReducer>
 
 const rootReducer = combineReducers({
-  counterData: counterReducer,
-});
+	counter: counterReducer
+})
 
-export const store: StoreType = createStore(rootReducer);
+export const store = createStore(
+	rootReducer,
+	loadState(),
+	composeWithDevTools()
+)
+store.subscribe(_.throttle(() => saveState(store.getState()), 1000))
+
+export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
 
 // @ts-ignore
-window.store = store;
+window.store = store
